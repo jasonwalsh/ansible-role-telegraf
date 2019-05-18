@@ -1,0 +1,12 @@
+---
+
+- name: Check if the Telegraf config exists
+  stat:
+    path: /etc/telegraf/telegraf.conf
+  register: response
+
+- name: Copy Telegraf config (if not exists)
+  copy:
+    dest: /etc/telegraf/telegraf.conf
+    src: '{{ telegraf_conf }}'
+  when: not response.stat.exists

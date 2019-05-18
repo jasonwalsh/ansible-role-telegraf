@@ -1,0 +1,12 @@
+---
+
+- name: Include Debian tasks
+  include_tasks: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Include RedHat tasks
+  include_tasks: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Include common tasks
+  include_tasks: noarch.yml

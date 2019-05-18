@@ -1,0 +1,14 @@
+dependencies: []
+galaxy_info:
+  author: jasonwalsh
+  description: Ansible role for installing Telegraf
+  galaxy_tags:
+    - telegraf
+    - influxdb
+  license: MIT
+  min_ansible_version: 2.7.6
+  platforms:
+    - name: GenericLinux
+      versions:
+        - any
+  role_name: telegraf

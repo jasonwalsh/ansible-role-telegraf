@@ -1,0 +1,13 @@
+---
+
+- name: Install Telegraf
+  yum:
+    name: https://dl.influxdata.com/telegraf/releases/telegraf-{{ telegraf_version }}-1.x86_64.rpm
+    state: present
+  when: ansible_architecture == 'x86_64'
+
+- name: Enable and start Telegraf
+  systemd:
+    enabled: true
+    name: telegraf
+    state: started

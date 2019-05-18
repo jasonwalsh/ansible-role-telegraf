@@ -1,0 +1,42 @@
+---
+
+docker_options: &docker_options
+  capabilities:
+    - SYS_ADMIN
+  command: /sbin/init
+  network_mode: host
+  privileged: true
+  volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+  options:
+    config-data:
+      ignore: .circleci
+platforms:
+  - image: centos/systemd
+    name: centos-7
+    << : *docker_options
+
+  - image: geerlingguy/docker-ubuntu1404-ansible
+    name: ubuntu-1404
+    << : *docker_options
+
+  - image: geerlingguy/docker-ubuntu1604-ansible
+    name: ubuntu-1604
+    << : *docker_options
+provisioner:
+  lint:
+    name: ansible-lint
+  name: ansible
+scenario:
+  name: default
+verifier:
+  lint:
+    name: flake8
+  name: testinfra

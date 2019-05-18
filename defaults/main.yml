@@ -1,0 +1,4 @@
+---
+
+telegraf_conf: telegraf.conf
+telegraf_version: 1.10.4

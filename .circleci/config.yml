@@ -1,0 +1,50 @@
+jobs:
+  test:
+    docker:
+      - image: quay.io/ansible/molecule:2.20.1
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: molecule test
+    working_directory: ~/ansible-role-telegraf
+  e2e:
+    machine:
+      image: circleci/classic:201808-01
+    steps:
+      - checkout
+      - run: docker run -d --net host -p 8086:8086 influxdb:1.7.6
+      - run: |
+          pyenv global 3.7.0
+          pip install molecule==2.20.1 docker-py==1.10.6
+          molecule converge
+      - run: test $(curl --silent localhost:8086/debug/requests | jq '.["127.0.0.1"].writes') -gt 0
+    working_directory: ~/ansible-role-telegraf
+  release:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache:
+          key: npm-cache
+      - run: |
+          npm install @semantic-release/changelog -D
+          npm install @semantic-release/git -D
+      - run: npx semantic-release@15
+      - save_cache:
+          key: npm-cache
+          paths:
+            - node_modules
+version: 2.0
+workflows:
+  test-release:
+    jobs:
+      - test
+      - e2e
+      - release:
+          filters:
+            branches:
+              only: master
+          requires:
+            - e2e
+            - test
+  version: 2

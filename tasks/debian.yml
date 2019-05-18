@@ -1,0 +1,21 @@
+---
+
+- name: Install Telegraf
+  apt:
+    deb: https://dl.influxdata.com/telegraf/releases/telegraf_{{ telegraf_version }}-1_amd64.deb
+    state: present
+  when: ansible_architecture == 'x86_64'
+
+- name: Enable and start Telegraf
+  systemd:
+    enabled: true
+    name: telegraf
+    state: started
+  when: ansible_distribution_version is version('15.04', '>=')
+
+- name: Enable and start Telegraf
+  service:
+    enabled: true
+    name: telegraf
+    state: started
+  when: ansible_distribution_version is version('15.04', '<')
