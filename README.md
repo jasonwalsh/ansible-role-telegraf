@@ -1,4 +1,4 @@
-[![CircleCI](https://img.shields.io/circleci/project/github/jasonwalsh/ansible-role-telegraf/master.svg?style=flat-square)](https://circleci.com/gh/jasonwalsh/ansible-role-telegraf/tree/master)
+[![CircleCI](https://img.shields.io/circleci/project/github/jasonwalsh/ansible-role-telegraf/master.svg?style=flat-square)](https://circleci.com/gh/jasonwalsh/ansible-role-telegraf/tree/master) [![Ansible Quality Score](https://img.shields.io/ansible/quality/40537.svg?style=flat-square)](https://galaxy.ansible.com/jasonwalsh/telegraf) [![Ansible Role](https://img.shields.io/ansible/role/d/40537.svg?style=flat-square)](https://galaxy.ansible.com/jasonwalsh/telegraf)
 
 > Ansible role for installing [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/)
 
