@@ -8,7 +8,11 @@ galaxy_info:
   license: MIT
   min_ansible_version: 2.7.6
   platforms:
-    - name: GenericLinux
+    - name: Ubuntu
       versions:
-        - any
+        - trusty
+        - xenial
+    - name: EL
+      versions:
+        - 7
   role_name: telegraf
