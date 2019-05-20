@@ -3,5 +3,4 @@
 - name: Copy Telegraf configuration file
   copy:
     dest: /etc/telegraf/telegraf.conf
-    force: false
     src: '{{ telegraf_conf }}'
