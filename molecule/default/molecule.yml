@@ -21,15 +21,15 @@ lint:
 platforms:
   - image: centos/systemd
     name: centos-7
-    << : *docker_options
+    <<: *docker_options
 
   - image: geerlingguy/docker-ubuntu1404-ansible
     name: ubuntu-1404
-    << : *docker_options
+    <<: *docker_options
 
   - image: geerlingguy/docker-ubuntu1604-ansible
     name: ubuntu-1604
-    << : *docker_options
+    <<: *docker_options
 provisioner:
   lint:
     name: ansible-lint
